@@ -84,9 +84,17 @@ class CoreDataStack {
             }
         }
     }
+
+//    private func performSave(in context: NSManagedObjectContext) throws {
+//        try context.save()
+//        if let parent = context.parent { try performSave(in: parent)}
+//    }
     
     private func performSave(in context: NSManagedObjectContext) throws {
-        try context.save()
+        context.performAndWait {
+            do { try context.save() }
+            catch { assertionFailure(error.localizedDescription) }
+        }
         if let parent = context.parent { try performSave(in: parent)}
     }
     
