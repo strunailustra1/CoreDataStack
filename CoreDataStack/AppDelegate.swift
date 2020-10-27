@@ -11,10 +11,16 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let coreDataStack = CoreDataStack()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        coreDataStack.didUpdateDataBase = { stack in
+            stack.printDataBaseStatistice()
+        }
+        
+        coreDataStack.enableObservers()
+        let chatRequest = ChatRequest(coreDataStack: coreDataStack)
+        chatRequest.makeRequest()
         return true
     }
 
