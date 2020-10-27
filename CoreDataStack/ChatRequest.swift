@@ -28,27 +28,23 @@ struct ChatRequest {
                                       senderId: "foofoo",
                                       senderName: "foo",
                                       in: context)
-            
             let message3 = Message_db(content: "Bar bar bar",
                                       created: Date(),
                                       senderId: "barbar",
                                       senderName: "bar",
                                       in: context)
-            
             let channel1 = Channel_db(identifier: "ch1",
                                       name: "channel1 2 messages",
                                       lastMessage: "hello",
                                       lastActivity: Date(),
                                       in: context)
             [message1, message2].forEach { channel1.addToMessages($0) }
-            
             let channel2 = Channel_db(identifier: "ch2",
                                       name: "channel2 1 messages",
                                       lastMessage: "hello",
                                       lastActivity: Date(),
                                       in: context)
             channel2.addToMessages(message3)
-            
             let channel3 = Channel_db(identifier: "ch3",
                                       name: "channel3 0 messages",
                                       lastMessage: "",

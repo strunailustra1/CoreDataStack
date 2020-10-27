@@ -39,15 +39,15 @@ class CoreDataStack {
     private lazy var persistentCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         
-            do {
-                //todo советуют отдельную очередь 36:15
-                try coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
-                                                   configurationName: nil,
-                                                   at: self.storeURL,
-                                                   options: nil)
-            } catch {
-                fatalError(error.localizedDescription)
-            }
+        do {
+            //todo советуют отдельную очередь 36:15
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
+                                               configurationName: nil,
+                                               at: self.storeURL,
+                                               options: nil)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
         return coordinator
     }()
     
